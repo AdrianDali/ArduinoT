@@ -71,6 +71,7 @@ void loop() {
         digitalWrite(ledPin[1], HIGH);
         Serial.println("##################Serial 01");
         if (index == 0) {
+            
           index = index;
           Serial.println("######################index #####################CASO 01");
           Serial.println(index);
@@ -123,7 +124,7 @@ void loop() {
         //Código a ejecutar si variable es igual a 1
         break;
       case 2:
-      ApagarLeds();
+        ApagarLeds();
         digitalWrite(ledPin[2], HIGH);
         Serial.println("##################Serial02");
         if (index == 0) {
@@ -172,7 +173,7 @@ void loop() {
         delay(1000);  // Espera 1 segundo antes de cambiar de dirección
         break;
       case 3:
-      ApagarLeds();
+        ApagarLeds();
         digitalWrite(ledPin[3], HIGH);
         Serial.println("##################Serial03");
         if (index == 0) {
@@ -224,7 +225,7 @@ void loop() {
         //Código a ejecutar si variable es igual a 3
         break;
       case 4:
-      ApagarLeds();
+        ApagarLeds();
         digitalWrite(ledPin[4], HIGH);
         Serial.println("###################Serial04");
         Serial.println(" CASOOOOOO04###################################################");
@@ -273,7 +274,7 @@ void loop() {
         //Código a ejecutar si variable es igual a 4
         break;
       case 5:
-      ApagarLeds();
+        ApagarLeds();
         digitalWrite(ledPin[5], HIGH);
         Serial.println("####################Serial05");
         Serial.println("###################Serial04");
@@ -323,7 +324,7 @@ void loop() {
         //Código a ejecutar si variable es igual a 5
         break;
       case 6:
-      ApagarLeds();
+        ApagarLeds();
         digitalWrite(ledPin[6], HIGH);
         Serial.println("#$###################Serial06");
         Serial.println(" CASOOOOOO04###################################################");
@@ -371,7 +372,7 @@ void loop() {
         //Código a ejecutar si variable es igual a 6
         break;
       case 7:
-      ApagarLeds();
+        ApagarLeds();
         digitalWrite(ledPin[7], HIGH);
         Serial.println("#$###################Serial07");
         Serial.println(" CASOOOOOO04###################################################");
