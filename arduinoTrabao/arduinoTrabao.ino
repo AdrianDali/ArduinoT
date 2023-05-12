@@ -3,13 +3,13 @@
 
 #define buttonMode 2
 
-#define ledPin01 5
-#define ledPin02 1
-#define ledPin03 2
-#define ledPin04 3
-#define ledPin05 4
-#define ledPin06 5
-#define ledPin07 6
+#define ledPin01 14
+#define ledPin02 15
+#define ledPin03 16
+#define ledPin04 17
+#define ledPin05 18
+#define ledPin06 19
+#define ledPin07 20
 
 #define buttonPin08 10
 #define buttonPin01 3
@@ -67,6 +67,8 @@ void loop() {
 
     switch (buttonPressed) {
       case 1:
+      ApagarLeds();
+        digitalWrite(ledPin[1], HIGH);
         Serial.println("##################Serial 01");
         if (index == 0) {
           index = index;
@@ -121,6 +123,8 @@ void loop() {
         //Código a ejecutar si variable es igual a 1
         break;
       case 2:
+      ApagarLeds();
+        digitalWrite(ledPin[2], HIGH);
         Serial.println("##################Serial02");
         if (index == 0) {
           index = index + 8;
@@ -168,6 +172,8 @@ void loop() {
         delay(1000);  // Espera 1 segundo antes de cambiar de dirección
         break;
       case 3:
+      ApagarLeds();
+        digitalWrite(ledPin[3], HIGH);
         Serial.println("##################Serial03");
         if (index == 0) {
           index = index + 16;
@@ -218,6 +224,8 @@ void loop() {
         //Código a ejecutar si variable es igual a 3
         break;
       case 4:
+      ApagarLeds();
+        digitalWrite(ledPin[4], HIGH);
         Serial.println("###################Serial04");
         Serial.println(" CASOOOOOO04###################################################");
         if (index == 0) {
@@ -265,6 +273,8 @@ void loop() {
         //Código a ejecutar si variable es igual a 4
         break;
       case 5:
+      ApagarLeds();
+        digitalWrite(ledPin[5], HIGH);
         Serial.println("####################Serial05");
         Serial.println("###################Serial04");
         Serial.println(" CASOOOOOO04###################################################");
@@ -313,9 +323,9 @@ void loop() {
         //Código a ejecutar si variable es igual a 5
         break;
       case 6:
+      ApagarLeds();
+        digitalWrite(ledPin[6], HIGH);
         Serial.println("#$###################Serial06");
-        Serial.println("####################Serial05");
-        Serial.println("###################Serial04");
         Serial.println(" CASOOOOOO04###################################################");
         if (index == 0) {
           index = index + 40;
@@ -361,6 +371,8 @@ void loop() {
         //Código a ejecutar si variable es igual a 6
         break;
       case 7:
+      ApagarLeds();
+        digitalWrite(ledPin[7], HIGH);
         Serial.println("#$###################Serial07");
         Serial.println(" CASOOOOOO04###################################################");
         if (index == 0) {
@@ -407,6 +419,8 @@ void loop() {
         //Código a ejecutar si variable es igual a 7
         break;
       case 8:
+        ApagarLeds();
+        digitalWrite(ledPin[7], HIGH);
         Serial.println("S######################Serial08");
         Serial.println("#$###################Serial07");
         Serial.println(" CASOOOOOO04###################################################");
@@ -466,4 +480,17 @@ void loop() {
   } else {
     Serial.println("modo automatico");
   }
+}
+
+
+void ApagarLeds(){
+  digitalWrite(ledPin[0], LOW);
+  digitalWrite(ledPin[1], LOW);
+  digitalWrite(ledPin[2], LOW);
+  digitalWrite(ledPin[3], LOW);
+  digitalWrite(ledPin[4], LOW);
+  digitalWrite(ledPin[5], LOW);
+  digitalWrite(ledPin[6], LOW);
+  digitalWrite(ledPin[7], LOW);
+
 }
