@@ -1,7 +1,11 @@
 // Incluye la librería para el control de motores a pasos
 #include <Stepper.h>
 
-#define buttonMode 2
+#define STEP 2
+#define DIR 1
+
+
+#define buttonMode 21
 
 #define ledPin01 14
 #define ledPin02 15
@@ -28,14 +32,19 @@ int buttonPin[] = { buttonPin01, buttonPin02, buttonPin03, buttonPin04, buttonPi
 const int stepsPerRevolution = 200;
 
 // Define el número de pines utilizados para el control del motor
-const int motorPins[] = { 2, 3, 4, 5 };
+//const int motorPins[] = { 2, 3, 4, 5 };
 
 // Crea un objeto de la clase Stepper
-Stepper myStepper(stepsPerRevolution, motorPins[0], motorPins[1], motorPins[2], motorPins[3]);
+//Stepper myStepper(stepsPerRevolution, motorPins[0], motorPins[1], motorPins[2], motorPins[3]);
 
 int index = 0;  // rango de 0 a 70
-
+int actual =0;
 void setup() {
+  //motor a pasos arduini
+  pinMode(STEP, OUTPUT);
+  pinMode(DIR, OUTPUT);
+
+
   pinMode(buttonMode, INPUT_PULLUP);
   Serial.begin(9600);
   for (int i = 0; i < 7; i++) {
@@ -45,9 +54,9 @@ void setup() {
     pinMode(buttonPin[i], INPUT_PULLUP);
   }
 
-  for (int i = 0; i < 4; i++) {
-    pinMode(motorPins[i], OUTPUT);
-  }
+  //for (int i = 0; i < 4; i++) {
+  //  pinMode(motorPins[i], OUTPUT);
+  //}
 }
 void loop() {
   if (digitalRead(buttonMode) == HIGH) {
@@ -67,47 +76,62 @@ void loop() {
 
     switch (buttonPressed) {
       case 1:
-      ApagarLeds();
+        ApagarLeds();
         digitalWrite(ledPin[1], HIGH);
         Serial.println("##################Serial 01");
         if (index == 0) {
-            
+          actual = index;
           index = index;
+          calculo(actual, index);
           Serial.println("######################index #####################CASO 01");
           Serial.println(index);
           delay(2000);
         } else if (index == 8) {
+          actual = index;
           index = index - 8;
+          calculo(actual, index);
           Serial.println("######################index ##################### CASO 02");
           Serial.println(index);
           delay(2000);
         } else if (index == 16) {
+          actual = index;
           index = index - 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 24) {
+          actual = index; 
           index = index - 24;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 32) {
+          actual = index; 
           index = index - 32;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 40) {
+          actual = index;
           index = index - 40;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 48) {
+          actual = index; 
           index = index - 48;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 56) {
+          actual = index; 
           index = index - 56;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
@@ -128,42 +152,58 @@ void loop() {
         digitalWrite(ledPin[2], HIGH);
         Serial.println("##################Serial02");
         if (index == 0) {
+          actual = index; 
           index = index + 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 8) {
+          actual = index;
           index = index;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 16) {
+          actual = index ;
           index = index - 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 24) {
+          actual = index; 
           index = index - 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 32) {
+          actual = index; 
           index = index - 24;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 40) {
+          actual = index;
           index = index - 32;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 48) {
+          actual =index;
           index = index - 40;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 56) {
+          actual =index ;
           index = index - 48;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
@@ -177,42 +217,58 @@ void loop() {
         digitalWrite(ledPin[3], HIGH);
         Serial.println("##################Serial03");
         if (index == 0) {
+          actual = index;
           index = index + 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 8) {
-          index = index + 8 ;
+          actual = index;
+          index = index + 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 16) {
-          index = index ;
+          actual = index;
+          index = index;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 24) {
+          actual = index;
           index = index - 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 32) {
+          actual = index;
           index = index - 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 40) {
+          actual = index; 
           index = index - 24;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 48) {
+          actual = index; 
           index = index - 32;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 56) {
+          actual = index ;
           index = index - 40;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
@@ -230,42 +286,58 @@ void loop() {
         Serial.println("###################Serial04");
         Serial.println(" CASOOOOOO04###################################################");
         if (index == 0) {
+          actual = index;
           index = index + 24;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 8) {
+          actual = index;
           index = index + 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 16) {
+          actual = index ;
           index = index + 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 24) {
+          actual = index; 
           index = index;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 32) {
+          actual = index; 
           index = index - 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 40) {
+          actual = index; 
           index = index - 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 48) {
+          actual = index;
           index = index - 24;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 56) {
+          actual = index; 
           index = index - 32;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
@@ -280,42 +352,58 @@ void loop() {
         Serial.println("###################Serial04");
         Serial.println(" CASOOOOOO04###################################################");
         if (index == 0) {
+          actual = index; 
           index = index + 32;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 8) {
+          actual = index; 
           index = index + 24;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 16) {
+          actual = index; 
           index = index + 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 24) {
+          actual = index;
           index = index + 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 32) {
-          index = index ;
+          actual = index; 
+          index = index;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 40) {
+          actual = index ;
           index = index - 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 48) {
+          actual = index; 
           index = index - 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 56) {
+          actual = index;
           index = index - 24;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
@@ -329,42 +417,58 @@ void loop() {
         Serial.println("#$###################Serial06");
         Serial.println(" CASOOOOOO04###################################################");
         if (index == 0) {
+          actual = index; 
           index = index + 40;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 8) {
+          actual = index; 
           index = index + 32;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 16) {
+          actual = index; 
           index = index + 24;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 24) {
+          actual = index; 
           index = index + 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 32) {
-          index = index + 8 ;
+          actual = index; 
+          index = index + 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 40) {
-          index = index ;
+          actual = index;
+          index = index;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 48) {
+          actual = index;
           index = index - 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 56) {
+          actual = index;
           index = index - 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
@@ -377,42 +481,58 @@ void loop() {
         Serial.println("#$###################Serial07");
         Serial.println(" CASOOOOOO04###################################################");
         if (index == 0) {
+          actual = index; 
           index = index + 48;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 8) {
+          actual = index; 
           index = index + 40;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 16) {
+          actual = index;
           index = index + 32;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 24) {
+          actual = index;
           index = index + 24;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 32) {
-          index = index + 16 ;
+          actual = index;
+          index = index + 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 40) {
-          index = index +8;
+          actual = index;
+          index = index + 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 48) {
-          index = index ;
+          actual = index; 
+          index = index;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 56) {
+          actual = index;
           index = index - 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
@@ -426,42 +546,58 @@ void loop() {
         Serial.println("#$###################Serial07");
         Serial.println(" CASOOOOOO04###################################################");
         if (index == 0) {
+          actual = index; 
           index = index + 56;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 8) {
+          actual = index;
           index = index + 48;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 16) {
+          actual = index; 
           index = index + 40;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 24) {
+          actual = index;
           index = index + 32;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 32) {
-          index = index + 24 ;
+          actual = index;
+          index = index + 24;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 40) {
-          index = index +16;
+          actual = index; 
+          index = index + 16;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 48) {
-          index = index +8 ;
+          actual = index; 
+          index = index + 8;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
         } else if (index == 56) {
-          index = index ;
+          actual = index;
+          index = index;
+          calculo(actual, index);
           Serial.println("######################index");
           Serial.println(index);
           delay(2000);
@@ -484,7 +620,7 @@ void loop() {
 }
 
 
-void ApagarLeds(){
+void ApagarLeds() {
   digitalWrite(ledPin[0], LOW);
   digitalWrite(ledPin[1], LOW);
   digitalWrite(ledPin[2], LOW);
@@ -493,5 +629,39 @@ void ApagarLeds(){
   digitalWrite(ledPin[5], LOW);
   digitalWrite(ledPin[6], LOW);
   digitalWrite(ledPin[7], LOW);
+}
 
+
+int calculo(int actual, int siguiente) {
+  int aux = siguiente - actual;
+  Serial.println("RECIDUO DE LA RESTQA");
+  Serial.println(aux);
+  if (aux < 0) {
+    digitalWrite(DIR, LOW);
+    Serial.println("Se restara");
+      aux = aux * 500;
+    Serial.println("Nuevo auxiliar");
+    Serial.println(aux);
+    Serial.println("ENTRANDO AL FOR");
+    digitalWrite(DIR, HIGH);
+    for (int i = 0; i > aux; i--) {
+      //Serial.println("MOVIMIENTO DEL MOTRO");
+      //Serial.println(i);
+      digitalWrite(STEP, HIGH);
+      delay(1);
+      digitalWrite(STEP, LOW);
+      //delay(1);
+    }
+  } else {
+    digitalWrite(DIR, HIGH);
+    Serial.println("se sumara");
+    aux = aux * 500;
+    for (int i = 0; i < aux; i++) {
+      digitalWrite(STEP, HIGH);
+      delay(1);
+      digitalWrite(STEP, LOW);
+      //delay(1);
+    }
+  }
+  return aux;
 }
