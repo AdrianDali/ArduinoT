@@ -1,15 +1,15 @@
 // Incluye la librería para el control de motores a pasos
 #include <Stepper.h>
 
-#define STEP 2
-#define DIR 17
+#define STEP 24
+#define DIR 23
 
-#define STEP2 14
-#define DIR2 15
+#define STEP2 25
+#define DIR2 26
 
 
 
-#define buttonMode 21
+#define buttonMode 33
 
 #define ledPin01 24
 #define ledPin02 25
@@ -22,16 +22,16 @@
 #define ledPin09 32
 #define ledPin10 33
 
-#define buttonPin08 10
-#define buttonPin01 3
-#define buttonPin02 4
-#define buttonPin03 5
-#define buttonPin04 6
-#define buttonPin05 7
-#define buttonPin06 8
-#define buttonPin07 9
+#define buttonPin08 7
+#define buttonPin01 0
+#define buttonPin02 1
+#define buttonPin03 2
+#define buttonPin04 3
+#define buttonPin05 4
+#define buttonPin06 5
+#define buttonPin07 6
 
-#define enable 11
+#define enable 22
 
 int ledPin[] = { ledPin01, ledPin02, ledPin03, ledPin04, ledPin05, ledPin06, ledPin07, ledPin08, ledPin09, ledPin10 };
 int buttonPin[] = { buttonPin01, buttonPin02, buttonPin03, buttonPin04, buttonPin05, buttonPin06, buttonPin07, buttonPin08 };
@@ -75,7 +75,9 @@ void setup() {
   //}
 }
 void loop() {
-  if (digitalRead(buttonMode) == HIGH) {
+  int  hola = 0; 
+  if(hola == 0){
+  //if (digitalRead(buttonMode) == HIGH) {
     // modo manual
     //Serial.println("Modo manual");
     int buttonPressed = 0;
@@ -898,4 +900,14 @@ int calculo(int actual, int siguiente) {
     }
   }
   return aux;
+}
+
+int Linealizacion(int distancia){
+
+  nueva = distancia * 200;
+  return distancia; 
+
+
+
+
 }
