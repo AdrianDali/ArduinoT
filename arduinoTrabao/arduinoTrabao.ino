@@ -7,8 +7,6 @@
 #define STEP2 25
 #define DIR2 26
 
-
-
 #define buttonMode 33
 
 #define ledPin01 24
@@ -22,16 +20,17 @@
 #define ledPin09 32
 #define ledPin10 33
 
-#define buttonPin08 7
-#define buttonPin01 0
-#define buttonPin02 1
-#define buttonPin03 2
-#define buttonPin04 3
-#define buttonPin05 4
-#define buttonPin06 5
-#define buttonPin07 6
+#define buttonPin08 0
+#define buttonPin01 7
+#define buttonPin02 6
+#define buttonPin03 5
+#define buttonPin04 4
+#define buttonPin05 3
+#define buttonPin06 2
+#define buttonPin07 1
 
 #define enable 22
+#define ventilador 34
 
 int ledPin[] = { ledPin01, ledPin02, ledPin03, ledPin04, ledPin05, ledPin06, ledPin07, ledPin08, ledPin09, ledPin10 };
 int buttonPin[] = { buttonPin01, buttonPin02, buttonPin03, buttonPin04, buttonPin05, buttonPin06, buttonPin07, buttonPin08 };
@@ -55,11 +54,11 @@ void setup() {
   pinMode(enable, OUTPUT);
   digitalWrite(enable, HIGH);
   digitalWrite(DIR, HIGH);
-
+  pinMode(ventilador, INPUT_PULLUP );
   //motor 2 arduini
   pinMode(STEP2, OUTPUT);
   pinMode(DIR2, OUTPUT);
-
+  pinMode(27, OUTPUT);
 
   pinMode(buttonMode, INPUT_PULLUP);
   Serial.begin(9600);
@@ -75,6 +74,14 @@ void setup() {
   //}
 }
 void loop() {
+  if(digitalRead(ventilador) == LOW){
+    Serial.println("$#$$$$$$$$$$$$$$$$$$$$$$");
+    digitalWrite(27, HIGH);
+
+  }
+  else{
+    digitalWrite(27, LOW);
+  }
   int  hola = 0; 
   if(hola == 0){
   //if (digitalRead(buttonMode) == HIGH) {
@@ -86,7 +93,7 @@ void loop() {
       if (digitalRead(buttonPin[i]) == LOW) {
         Serial.println("Boton presionado");
 
-        buttonPressed = i + 1;
+        buttonPressed = i ;
         Serial.println(buttonPressed);
         break;
       }
@@ -107,8 +114,8 @@ void loop() {
           MovimientoSegundoMotor();
           
           
-          Serial.println("######################index #####################CASO 01");
-          Serial.println(index);
+          //Serial.println("######################index #####################CASO 01");
+          //Serial.println(index);
           delay(200);
         } else if (index == 8) {
           actual = index;
@@ -372,7 +379,7 @@ void loop() {
         ApagarLeds();
         digitalWrite(ledPin[3], HIGH);
         Serial.println("###################Serial04");
-        Serial.println(" CASOOOOOO04###################################################");
+        
         if (index == 0) {
           actual = index;
           index = index + 24;         
@@ -461,8 +468,6 @@ void loop() {
         ApagarLeds();
         digitalWrite(ledPin[4], HIGH);
         Serial.println("####################Serial05");
-        Serial.println("###################Serial04");
-        Serial.println(" CASOOOOOO04###################################################");
         if (index == 0) {
           actual = index;
           index = index + 32;         
@@ -551,7 +556,6 @@ void loop() {
         ApagarLeds();
         digitalWrite(ledPin[5], HIGH);
         Serial.println("#$###################Serial06");
-        Serial.println(" CASOOOOOO04###################################################");
         if (index == 0) {
           actual = index;
           index = index + 40;         
@@ -635,182 +639,11 @@ void loop() {
         }
         //Código a ejecutar si variable es igual a 6
         break;
-      case 7:
-        ApagarLeds();
-        digitalWrite(ledPin[6], HIGH);
-        Serial.println("#$###################Serial07");
-        Serial.println(" CASOOOOOO04###################################################");
-        if (index == 0) {
-          actual = index;
-          index = index + 48;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 8) {
-          actual = index;
-          index = index + 40;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 16) {
-          actual = index;
-          index = index + 32;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 24) {
-          actual = index;
-          index = index + 24;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 32) {
-          actual = index;
-          index = index + 16;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 40) {
-          actual = index;
-          index = index + 8;          
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 48) {
-          actual = index;
-          index = index;          
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 56) {
-          actual = index;
-          index = index - 8;          
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        }
-        //Código a ejecutar si variable es igual a 7
-        break;
-      case 8:
-        ApagarLeds();
-        digitalWrite(ledPin[7], HIGH);
-        Serial.println("S######################Serial08");
-        Serial.println("#$###################Serial07");
-        Serial.println(" CASOOOOOO04###################################################");
-        if (index == 0) {
-          actual = index;
-          index = index + 56;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 8) {
-          actual = index;
-          index = index + 48;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 16) {
-          actual = index;
-          index = index + 40;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 24) {
-          actual = index;
-          index = index + 32;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 32) {
-          actual = index;
-          index = index + 24;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 40) {
-          actual = index;
-          index = index + 16;         
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 48) {
-          actual = index;
-          index = index + 8;          
-          RegresoSegundoMotor();
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        } else if (index == 56) {
-          actual = index;
-          index = index;          
-          calculo(actual, index);
-          MovimientoSegundoMotor();
-          
-          Serial.println("######################index");
-          Serial.println(index);
-          delay(200);
-        }
-        //Código a ejecutar si variable es igual a 8
-        break;
+      // case 7:
+      // Serial.println("######print234");
+      //   //Código a ejecutar si variable es igual a 7
+        
+      //   break;
       default:
         //Código a ejecutar si variable no coincide con ningún caso
         break;
@@ -836,7 +669,7 @@ void ApagarLeds() {
 void RegresoSegundoMotor(){
   if (posicion == 1) {
     digitalWrite(DIR2, HIGH);
-    for (int i = 0; i < 2000; i++) {
+    for (int i = 0; i < 200; i++) {
       digitalWrite(STEP2, HIGH);
       delay(1);
       digitalWrite(STEP2, LOW);
@@ -851,7 +684,7 @@ void MovimientoSegundoMotor() {
 
   if (posicion == 1) {
     digitalWrite(DIR2, HIGH);
-    for (int i = 0; i < 2000; i++) {
+    for (int i = 0; i < 200; i++) {
       digitalWrite(STEP2, HIGH);
       delay(1);
       digitalWrite(STEP2, LOW);
@@ -861,7 +694,7 @@ void MovimientoSegundoMotor() {
 
   } else if (posicion == 0) {
     digitalWrite(DIR2, LOW);
-    for (int i = 0; i < 2000; i++) {
+    for (int i = 0; i < 200; i++) {
       digitalWrite(STEP2, HIGH);
       delay(1);
       digitalWrite(STEP2, LOW);
@@ -874,12 +707,16 @@ void MovimientoSegundoMotor() {
 
 int calculo(int actual, int siguiente) {
   int aux = siguiente - actual;
+  int  pasos = aux;
+  int pasos_linealizados = Linealizacion(pasos);
+  //Serial.println("############################DSFSDFDSFDS#################");
+  //Serial.println(pasos_linealizados);
   if (aux < 0) {
     
-    Serial.println("######################SE RESTARA LA INFORMACION######################");
-    aux = aux * 100;
-    digitalWrite(DIR, LOW);
-    for (int i = 0; i > aux; i--) {
+    //Serial.println("######################SE RESTARA LA INFORMACION######################");
+    aux = aux * 300;
+    digitalWrite(DIR, HIGH);
+    for (int i = 0; i > pasos_linealizados; i--) {
       //Serial.println("MOVIMIENTO DEL MOTRO");
       //Serial.println(i);
       digitalWrite(STEP, HIGH);
@@ -889,10 +726,10 @@ int calculo(int actual, int siguiente) {
     }
   } else {
     
-    Serial.println("#############SE SUMARA LA INFORMACION#############################");
-    aux = aux * 100;
-    digitalWrite(DIR, HIGH);
-    for (int i = 0; i < aux; i++) {
+    //Serial.println("#############SE SUMARA LA INFORMACION#############################");
+    aux = aux * 300;
+    digitalWrite(DIR, LOW);
+    for (int i = 0; i < pasos_linealizados; i++) {
       digitalWrite(STEP, HIGH);
       delay(1);
       digitalWrite(STEP, LOW);
@@ -903,9 +740,14 @@ int calculo(int actual, int siguiente) {
 }
 
 int Linealizacion(int distancia){
+  int un_centimetro = 610;
 
-  nueva = distancia * 200;
-  return distancia; 
+
+
+  int nueva = distancia * un_centimetro;
+  Serial.println("#########################nueva distancia");
+  Serial.println(nueva);
+  return nueva;  
 
 
 
